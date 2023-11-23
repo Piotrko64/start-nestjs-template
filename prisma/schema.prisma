@@ -12,7 +12,11 @@ model User {
 
   email String @unique
 
+  password String
+
   name String?
+
+  role String
 
   posts Post[]
 }

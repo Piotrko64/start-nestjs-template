@@ -1,0 +1,21 @@
+GET http://localhost:3000/user HTTP/1.1 content-type: application/json
+
+###
+
+GET http://localhost:3000/user/query?role=ADMIN HTTP/1.1 content-type: application/json
+
+###
+
+POST http://localhost:3000/user/addUser HTTP/1.1 content-type: application/json
+content-type: application/json
+
+{
+"email": "sasmplssdfe2@example.com", 
+"password": "123f456", 
+"name": "Piotr",
+"role": "USER"
+}
+
+###
+
+GET http://localhost:3000/user/list/1 HTTP/1.1 content-type: application/json
