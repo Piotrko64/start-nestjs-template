@@ -1,0 +1,7 @@
+GET http://localhost:3000/test-cache HTTP/1.1 content-type: application/json
+
+###
+
+GET http://localhost:3000/test-cache/control HTTP/1.1 content-type: application/json
+
+###

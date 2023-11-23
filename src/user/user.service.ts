@@ -1,13 +1,20 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { CreateUserDto } from './dtos/create-user.dto';
-
+import { UseInterceptors, ClassSerializerInterceptor } from '@nestjs/common';
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
 
-  getAllUser() {
-    return this.prisma.user.findMany();
+  @UseInterceptors(ClassSerializerInterceptor)
+  async getAllUser() {
+    return await this.prisma.user.findMany({
+      select: {
+        name: true,
+        email: true,
+        role: true,
+      },
+    });
   }
 
   async getUser(id: number) {
