@@ -10,12 +10,24 @@ POST http://localhost:3000/user/addUser HTTP/1.1 content-type: application/json
 content-type: application/json
 
 {
-"email": "sasmplssdfe2@example.com", 
-"password": "123f456", 
-"name": "Piotr",
+"email": "sulsdtsdfe2@example.com", 
+"password": "12s3d@Df456", 
+"name": "daid",
 "role": "USER"
 }
 
 ###
 
 GET http://localhost:3000/user/list/1 HTTP/1.1 content-type: application/json
+
+###
+
+POST http://localhost:3000/user/addUser HTTP/1.1 content-type: application/json
+content-type: application/json
+
+{
+"email": "susassdfe2@example.com", 
+"password": "12s3d@Df456", 
+"name": "piotr",
+"role": "ADMIN"
+}

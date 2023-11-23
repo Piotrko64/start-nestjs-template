@@ -7,12 +7,14 @@ import {
   Param,
   UseInterceptors,
   ClassSerializerInterceptor,
+  UseGuards,
 } from '@nestjs/common';
 import { CacheKey, CacheTTL } from '@nestjs/cache-manager';
 import { UserService } from './user.service';
 import { ParseIntPipe, ValidationPipe } from '@nestjs/common/pipes';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { UserEntity } from './dtos/user.dto';
+import { PeterNameGuard } from 'src/guards/peter-name/peter-name.guard';
 
 @Controller('user')
 export class UserController {
@@ -28,7 +30,6 @@ export class UserController {
     return role;
   }
 
-  @UseInterceptors(ClassSerializerInterceptor)
   @Get('/list/:id')
   async getUserById(@Param('id', ParseIntPipe) id: number) {
     // https://docs.nestjs.com/pipes
@@ -36,7 +37,10 @@ export class UserController {
   }
 
   @Post('/addUser')
-  addUser(@Body(ValidationPipe) user: CreateUserDto) {
-    return this.userService.addUser(user);
+  @UseInterceptors(ClassSerializerInterceptor)
+  @UseGuards(PeterNameGuard)
+  async addUser(@Body(ValidationPipe) user: CreateUserDto) {
+    //EXPOSE
+    return new UserEntity(await this.userService.addUser(user));
   }
 }

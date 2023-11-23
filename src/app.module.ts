@@ -9,6 +9,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { TestCacheController } from './test-cache/test-cache.controller';
 import { ScheduleService } from './schedule/schedule.service';
 import { ScheduleModule } from '@nestjs/schedule';
+import { FilesController } from './files/files.controller';
 @Module({
   imports: [
     PrismaModule,
@@ -19,7 +20,7 @@ import { ScheduleModule } from '@nestjs/schedule';
       isGlobal: true,
     }),
   ],
-  controllers: [AppController, UserController, TestCacheController],
+  controllers: [AppController, UserController, TestCacheController, FilesController],
   providers: [
     AppService,
     UserService,
