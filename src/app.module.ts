@@ -10,6 +10,7 @@ import { TestCacheController } from './test-cache/test-cache.controller';
 import { ScheduleService } from './schedule/schedule.service';
 import { ScheduleModule } from '@nestjs/schedule';
 import { FilesController } from './files/files.controller';
+import { WebSocketModule } from './web-socket/web-socket.module';
 @Module({
   imports: [
     PrismaModule,
@@ -19,6 +20,7 @@ import { FilesController } from './files/files.controller';
       max: 100, // maximum number of items in cache
       isGlobal: true,
     }),
+    WebSocketModule,
   ],
   controllers: [AppController, UserController, TestCacheController, FilesController],
   providers: [
