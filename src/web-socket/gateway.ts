@@ -7,7 +7,7 @@ import {
 import { Server } from 'socket.io';
 import { OnModuleInit } from '@nestjs/common/interfaces';
 
-@WebSocketGateway()
+@WebSocketGateway(80) //PORT 80
 export class GateWay implements OnModuleInit {
   @WebSocketServer()
   server: Server;
