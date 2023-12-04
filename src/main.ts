@@ -12,6 +12,14 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('swagger', app, document);
 
+  app.enableCors();
+  // You can add object in enableCors:
+  // {
+  //           origin: true, <-- or array with urls
+  //           methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  //           credentials: true,
+  // }
+
   await app.listen(3000);
 }
 bootstrap();
