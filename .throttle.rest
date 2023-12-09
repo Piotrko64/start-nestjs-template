@@ -1,0 +1,9 @@
+GET http://localhost:3000/throttle HTTP/1.1 content-type: application/json
+
+###
+
+GET http://localhost:3000/throttle/work HTTP/1.1 content-type: application/json
+
+###
+
+GET http://localhost:3000/throttle/without HTTP/1.1 content-type: application/json

@@ -5,12 +5,15 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // app.setGlobalPrefix('api');
+  //prefix /api
+
   const config = new DocumentBuilder()
     .setTitle('nest example')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('swagger', app, document);
+  SwaggerModule.setup('swagger', app, document); // /swagger
 
   app.enableCors();
   // You can add object in enableCors:

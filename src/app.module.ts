@@ -11,6 +11,10 @@ import { ScheduleService } from './schedule/schedule.service';
 import { ScheduleModule } from '@nestjs/schedule';
 import { FilesController } from './files/files.controller';
 import { WebSocketModule } from './web-socket/web-socket.module';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
+import { ThrottleController } from './throttle/throttle.controller';
+
 @Module({
   imports: [
     PrismaModule,
@@ -21,14 +25,37 @@ import { WebSocketModule } from './web-socket/web-socket.module';
       isGlobal: true,
     }),
     WebSocketModule,
+    ThrottlerModule.forRoot([
+      {
+        name: 'short',
+        ttl: 2000,
+        limit: 3,
+      },
+      {
+        name: 'medium',
+        ttl: 10000,
+        limit: 20,
+      },
+    ]),
+    // https://docs.nestjs.com/security/rate-limiting
   ],
-  controllers: [AppController, UserController, TestCacheController, FilesController],
+  controllers: [
+    AppController,
+    UserController,
+    TestCacheController,
+    FilesController,
+    ThrottleController,
+  ],
   providers: [
     AppService,
     UserService,
     {
       provide: APP_INTERCEPTOR,
       useClass: CacheInterceptor,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
     },
     ScheduleService,
   ],
