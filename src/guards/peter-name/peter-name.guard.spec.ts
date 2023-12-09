@@ -1,5 +1,5 @@
 import { PeterNameGuard } from './peter-name.guard';
-import { of } from 'rxjs';
+import { of, from } from 'rxjs';
 
 describe('PeterNameGuard', () => {
   it('should be defined', () => {
