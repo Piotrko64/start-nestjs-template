@@ -5,7 +5,7 @@ import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { PrismaModule } from './prisma/prisma.module';
 import { CacheModule, CacheInterceptor } from '@nestjs/cache-manager';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
 import { TestCacheController } from './test-cache/test-cache.controller';
 import { ScheduleService } from './schedule/schedule.service';
 import { ScheduleModule } from '@nestjs/schedule';
@@ -14,6 +14,7 @@ import { WebSocketModule } from './web-socket/web-socket.module';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { ThrottleController } from './throttle/throttle.controller';
+import { AllExceptionFilter } from './all-exceptions.filter';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { ThrottleController } from './throttle/throttle.controller';
       isGlobal: true,
     }),
     WebSocketModule,
+
     ThrottlerModule.forRoot([
       {
         name: 'short',
@@ -47,6 +49,10 @@ import { ThrottleController } from './throttle/throttle.controller';
     ThrottleController,
   ],
   providers: [
+    {
+      provide: APP_FILTER,
+      useClass: AllExceptionFilter,
+    },
     AppService,
     UserService,
     {

@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Ip } from '@nestjs/common';
 import { SkipThrottle, Throttle } from '@nestjs/throttler';
 
 @SkipThrottle({ short: true, medium: true })
@@ -11,8 +11,8 @@ export class ThrottleController {
 
   @SkipThrottle({ short: false, medium: false })
   @Get('/work')
-  dontSkip() {
-    return 'work with Rate limiting!';
+  dontSkip(@Ip() ip: string) {
+    return 'work with Rate limiting! For IP: ' + ip;
   }
 
   @SkipThrottle({ short: false, medium: false })
