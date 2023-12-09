@@ -9,7 +9,6 @@ import {
   ClassSerializerInterceptor,
   UseGuards,
 } from '@nestjs/common';
-import { CacheKey, CacheTTL } from '@nestjs/cache-manager';
 import { UserService } from './user.service';
 import { ParseIntPipe, ValidationPipe } from '@nestjs/common/pipes';
 import { CreateUserDto } from './dtos/create-user.dto';

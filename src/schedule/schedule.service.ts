@@ -1,5 +1,5 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { Cron, Interval, Timeout } from '@nestjs/schedule';
+import { Cron, Interval } from '@nestjs/schedule';
 @Injectable()
 export class ScheduleService {
   private readonly logger = new Logger(ScheduleService.name);

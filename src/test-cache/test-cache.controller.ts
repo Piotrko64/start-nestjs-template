@@ -1,10 +1,5 @@
 import { Controller, Get, Inject } from '@nestjs/common';
-import {
-  CacheKey,
-  CacheTTL,
-  CacheInterceptor,
-  CACHE_MANAGER,
-} from '@nestjs/cache-manager';
+import { CacheInterceptor, CACHE_MANAGER } from '@nestjs/cache-manager';
 import { Cache } from 'cache-manager';
 import { UseInterceptors } from '@nestjs/common';
 
